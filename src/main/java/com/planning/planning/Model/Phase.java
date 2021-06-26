@@ -2,6 +2,9 @@ package com.planning.planning.Model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,19 +20,18 @@ public class Phase {
     private String objectif;
     private String rendu;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="HH:mm")
     private Date startTime;
     @JsonFormat(pattern="HH:mm")
     private Date endTime;
 
-    @ManyToOne
-    @JsonIgnore
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="seance_id", referencedColumnName="id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Seance seance;
 
-//    @ManyToOne
-//    @JoinColumn(nullable = true)
-//    @JsonIgnore
-//    private Seance seance;
 
     public Phase() {
     }

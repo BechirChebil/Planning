@@ -6,6 +6,7 @@ import java.time.Duration;
 
 @Entity
 public class Activite {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

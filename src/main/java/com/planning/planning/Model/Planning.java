@@ -1,6 +1,7 @@
 package com.planning.planning.Model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,10 +21,10 @@ public class Planning {
 //    private List<Seance> seances = new ArrayList<>();
 
     @OneToMany(mappedBy="planning")
+    @JsonIgnore
     private List<Seance> seances;
 
-//    @OneToMany(mappedBy = "planning")
-//    private List<Seance> seances;
+
 
 
 
